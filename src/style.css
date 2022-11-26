@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Sono:wght@300;500&display=swap');
+
+:root { 
+    --main-color-dark: #059669;
+    --main-color-basic: #34d399;
+    --main-color-light: #a7f3d0;
+    --strong-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px;;
+    --light-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --layout-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    --main-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+/*Global Configs*/
+* {
+    font-family: var(--main-font);
+    box-sizing: border-box;
+    list-style-type: none;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+}
+/*Full Layout Config*/
+.App {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+/*Header Configs*/
+.header {
+    color: white;
+    background-color: var(--main-color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    grid-column: span 3;
+    box-shadow: var(--layout-shadow);
+}
+
+.header form,
+.header-right{
+    display: flex;
+    align-items: center;
+    gap: 10px;    
+}
+
+.header form input {
+    height: 36px;
+    background-color: var(--main-color-light);
+    border: none;
+    padding: 3px;
+    box-shadow: var(--light-shadow);
+}
+
+.header form input:focus {
+    height: 36px;
+    background-color: white;   
+    outline: none;
+}
+
+.login-signup {
+    color: white;
+    border-bottom: 1px solid var(--main-color-light);
+}
+
+.login-signup:hover {
+    color: var(--main-color-light);
+}
+
+.header form button {
+    position: relative;
+    
+    border: none;
+    background-color: #a7f3d0;
+    right: 35px;
+}
+
+.header form button:hover {
+    height: 40px;
+    width: 40px;
+}
+
+.header form button img {
+    height: 33px;
+    width: auto;
+}
+
+
+/*Sidebar Layout Config*/
+
+.sidebar {
+    background-color: var(--main-color-basic);
+    position: sticky;
+    height: 100vh;
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    
+    color: white;
+    grid-row: 2/4;
+    padding: 10px;
+    box-shadow: var(--layout-shadow);
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid white;
+}
+.sidebar-menu-options {
+    color: white;
+}
+
+.sidebar-menu-options:hover {
+    color: var(--main-color-light);
+}
+
+.sidebar button {
+    align-self: center;
+    margin-top: 30%;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-size: 40px;
+    padding: 5px;
+    border: 1px solid white;
+    box-shadow: var(--strong-shadow);
+}
+
+.sidebar button:hover {
+    box-shadow: 0px 15px 25px -5px rgba(darken(dodgerblue, 40%));
+    transform: scale(1.03);
+}
+
+.sidebar button:active {
+    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
+}
+
+/*Description Layout Config*/
+
+.description {
+    grid-column: 3/4;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--main-color-light);
+    color: rgb(90, 90, 90);
+    box-shadow: var(--layout-shadow);
+    position: sticky;
+}
+.description h3 a {
+    color: rgb(90, 90, 90);
+}
+.description h3 a:hover {
+    font-size: 1.1em;
+}
