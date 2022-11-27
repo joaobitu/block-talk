@@ -26,18 +26,11 @@ function App() {
 
   const [activeUser, setActiveUser] = useState({}); // pass active user to header and other places so I can access active user data, and display it!
 
-  const [authModalToggle, setAuthModalToggle] = useState("1");
+  const [authModalToggle, setAuthModalToggle] = useState(true);
 
   const toggleAuthModal = () => {
-    let placeholder = authModalToggle;
-    placeholder == "1" ? (placeholder = "0") : (placeholder = "1");
-
-    setAuthModalToggle(placeholder);
+    setAuthModalToggle(!authModalToggle);
   };
-
-  onAuthStateChanged(auth, (currentUser) => {
-    setActiveUser(currentUser);
-  });
 
   const register = async () => {
     // pass this to the submit button of the register form
@@ -83,6 +76,9 @@ function App() {
 
   useEffect(() => {
     getBlocksList();
+    onAuthStateChanged(auth, (currentUser) => {
+      setActiveUser(currentUser);
+    });
   }, []);
 
   return (
@@ -90,9 +86,7 @@ function App() {
       <Header toggleRegisterLogIn={toggleAuthModal} />
       <Sidebar />
       <Description />
-      {authModalToggle === "1" && (
-        <AuthModal toggleRegisterLogIn={toggleAuthModal} />
-      )}
+      {authModalToggle && <AuthModal toggleRegisterLogIn={toggleAuthModal} />}
     </div>
   );
 }

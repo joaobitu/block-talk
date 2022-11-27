@@ -16,13 +16,7 @@ export const Header = (props) => {
       <div className="header-right">
         <h3 onClick={() => props.toggleRegisterLogIn()}>Login/Sign Up</h3>
 
-        <h3
-          onClick={() => {
-            console.log(props.toggleRegisterLogIn);
-          }}
-        >
-          User Name
-        </h3>
+        <h3>User Name</h3>
       </div>
     </div>
   );
