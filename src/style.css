@@ -65,7 +65,7 @@ body {
     border-bottom: 1px solid var(--main-color-light);
 }
 
-.login-signup:hover {
+.header-right h3:hover {
     color: var(--main-color-light);
 }
 
@@ -152,4 +152,69 @@ body {
 }
 .description h3 a:hover {
     font-size: 1.1em;
+}
+
+/*Auth Modal Layout Config*/
+
+.auth-modal {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 50vh;
+    width: 50vw;
+    top: calc(50% - 25vh);
+    left: calc(50% - 25vw);
+    border: 3px solid var(--main-color-light);
+}
+
+.auth-modal div {
+    height: 100%;
+    width: 100%;
+    grid-row: 1 / 3;
+    border-right: 3px solid var(--main-color-light);
+    background-color: var(--main-color-dark);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-modal > * {
+    align-self: center;
+    justify-self: center;
+}
+
+.auth-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-modal form button {
+    align-self: flex-end;
+    font-size: large;
+    padding: 3px 5px 3px 5px;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+
+}
+
+.auth-modal form label {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+#auth-modal-close {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+
 }

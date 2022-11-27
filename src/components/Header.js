@@ -14,10 +14,15 @@ export const Header = (props) => {
         </button>
       </form>
       <div className="header-right">
-        <a href="#" className="login-signup">
-          <h3>Login/Sign Up</h3>
-        </a>
-        <h3>User Name</h3>
+        <h3 onClick={() => props.toggleRegisterLogIn()}>Login/Sign Up</h3>
+
+        <h3
+          onClick={() => {
+            console.log(props.toggleRegisterLogIn);
+          }}
+        >
+          User Name
+        </h3>
       </div>
     </div>
   );

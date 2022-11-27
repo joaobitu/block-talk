@@ -12,6 +12,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "./firebase-config";
+import { AuthModal } from "./components/Auth-modal";
 
 function App() {
   const [blocks, setBlocks] = useState([]);
@@ -24,6 +25,15 @@ function App() {
   const [loginPassword, setLoginPassword] = useState("");
 
   const [activeUser, setActiveUser] = useState({}); // pass active user to header and other places so I can access active user data, and display it!
+
+  const [authModalToggle, setAuthModalToggle] = useState("1");
+
+  const toggleAuthModal = () => {
+    let placeholder = authModalToggle;
+    placeholder == "1" ? (placeholder = "0") : (placeholder = "1");
+
+    setAuthModalToggle(placeholder);
+  };
 
   onAuthStateChanged(auth, (currentUser) => {
     setActiveUser(currentUser);
@@ -77,9 +87,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header toggleRegisterLogIn={toggleAuthModal} />
       <Sidebar />
       <Description />
+      {authModalToggle === "1" && (
+        <AuthModal toggleRegisterLogIn={toggleAuthModal} />
+      )}
     </div>
   );
 }
