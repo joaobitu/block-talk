@@ -218,3 +218,55 @@ body {
     font-weight: 700;
 
 }
+/*NewBlock Layout Config*/
+
+.new-block-modal {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 20px;
+    background-color: white;
+    width: 40vw;
+    top: 2%;
+    left: calc(50% - 20vw);
+    border: 3px solid var(--main-color-light);
+    align-items: center;
+    justify-items: center;
+}
+
+.new-block-modal img {
+    height: 150px;
+    width: auto;
+    border-radius: 20px;
+    padding-left: 0;
+    
+}
+.new-block-modal textarea {
+    grid-column: 2/3;
+    resize: none;
+    padding: 5px;
+    
+    
+}
+
+.new-block-modal > button {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    align-self: flex-end;
+    font-size: large;
+    padding: 3px 5px 3px 5px;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}
+
+#new-block-close-button {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}

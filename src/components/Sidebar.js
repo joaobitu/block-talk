@@ -20,7 +20,7 @@ export const Sidebar = (props) => {
           </a>
         </li>
       </ul>
-      <button>New Block</button>
+      <button onClick={() => props.toggleNewBlock()}>New Block</button>
     </div>
   );
 };

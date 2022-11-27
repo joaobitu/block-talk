@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { AuthModal } from "./components/Auth-modal";
+import { NewBlock } from "./components/New-block-modal";
 
 function App() {
   const [blocks, setBlocks] = useState([]);
@@ -26,7 +27,12 @@ function App() {
 
   const [activeUser, setActiveUser] = useState({}); // pass active user to header and other places so I can access active user data, and display it!
 
-  const [authModalToggle, setAuthModalToggle] = useState(true);
+  const [authModalToggle, setAuthModalToggle] = useState(false);
+  const [newBlockModal, setNewBlockModal] = useState(false);
+
+  const toggleBlockModal = () => {
+    setNewBlockModal(!newBlockModal);
+  };
 
   const toggleAuthModal = () => {
     setAuthModalToggle(!authModalToggle);
@@ -90,7 +96,7 @@ function App() {
         profileAuth={activeUser}
         logoutAction={logout}
       />
-      <Sidebar />
+      <Sidebar toggleNewBlock={toggleBlockModal} />
       <Description />
       {authModalToggle && (
         <AuthModal
@@ -103,6 +109,7 @@ function App() {
           loginSubmit={login}
         />
       )}
+      {newBlockModal && <NewBlock toggleNewBlock={toggleBlockModal} />}
     </div>
   );
 }
