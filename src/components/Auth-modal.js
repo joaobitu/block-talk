@@ -6,16 +6,24 @@ export const AuthModal = (props) => {
       <div>
         <h1>BlockTalk</h1>
       </div>
-      <form>
+      <form onSubmit={(e) => props.registerSubmit(e)}>
         <h3>Sign Up:</h3>
         <label htmlFor="email">
           Email:
-          <input type="email" name="email" />
+          <input
+            type="email"
+            name="email"
+            onChange={(e) => props.emailRegisterValue(e.target.value)}
+          />
         </label>
 
         <label htmlFor="password">
           Password:
-          <input type="password" name="password" />
+          <input
+            type="password"
+            name="password"
+            onChange={(e) => props.passwordRegisterValue(e.target.value)}
+          />
         </label>
 
         <label htmlFor="confirm-password">
@@ -26,16 +34,24 @@ export const AuthModal = (props) => {
         <button>{">"}</button>
       </form>
 
-      <form>
+      <form onSubmit={(e) => props.loginSubmit(e)}>
         <h3>Log In:</h3>
         <label htmlFor="email">
           Email:
-          <input type="email" name="email" />
+          <input
+            type="email"
+            name="email"
+            onChange={(e) => props.emailLoginValue(e.target.value)}
+          />
         </label>
 
         <label htmlFor="password">
           Password:
-          <input type="password" name="password" />
+          <input
+            type="password"
+            name="password"
+            onChange={(e) => props.passwordLoginValue(e.target.value)}
+          />
         </label>
         <button>{">"}</button>
       </form>

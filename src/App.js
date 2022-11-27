@@ -32,7 +32,8 @@ function App() {
     setAuthModalToggle(!authModalToggle);
   };
 
-  const register = async () => {
+  const register = async (e) => {
+    e.preventDefault();
     // pass this to the submit button of the register form
     try {
       const user = await createUserWithEmailAndPassword(
@@ -45,7 +46,8 @@ function App() {
     }
   };
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     //pass this to the submit button of the login form
     try {
       const user = await signInWithEmailAndPassword(
@@ -83,10 +85,24 @@ function App() {
 
   return (
     <div className="App">
-      <Header toggleRegisterLogIn={toggleAuthModal} />
+      <Header
+        toggleRegisterLogIn={toggleAuthModal}
+        profileAuth={activeUser}
+        logoutAction={logout}
+      />
       <Sidebar />
       <Description />
-      {authModalToggle && <AuthModal toggleRegisterLogIn={toggleAuthModal} />}
+      {authModalToggle && (
+        <AuthModal
+          toggleRegisterLogIn={toggleAuthModal}
+          emailRegisterValue={setRegisterEmail}
+          passwordRegisterValue={setRegisterPassword}
+          emailLoginValue={setLoginEmail}
+          passwordLoginValue={setLoginPassword}
+          registerSubmit={register}
+          loginSubmit={login}
+        />
+      )}
     </div>
   );
 }

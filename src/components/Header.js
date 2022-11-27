@@ -14,9 +14,13 @@ export const Header = (props) => {
         </button>
       </form>
       <div className="header-right">
-        <h3 onClick={() => props.toggleRegisterLogIn()}>Login/Sign Up</h3>
+        <h3>{props.profileAuth?.email}</h3>
 
-        <h3>User Name</h3>
+        {props.profileAuth ? (
+          <h3 onClick={() => props.logoutAction()}>Logout</h3>
+        ) : (
+          <h3 onClick={() => props.toggleRegisterLogIn()}>Login/Sign Up</h3>
+        )}
       </div>
     </div>
   );
