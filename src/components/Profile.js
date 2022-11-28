@@ -7,9 +7,8 @@ export const Profile = (props) => {
   let params = useParams();
 
   useEffect(() => {
-    console.log(props.userData);
-    console.log(params.email);
     let resultObject = props.userData.filter((obj) => {
+      console.log(obj);
       return obj.email == params.email;
     });
 
@@ -26,10 +25,10 @@ export const Profile = (props) => {
         <div className="profile-details-right-section">
           <div>
             <h2>{userResult[0]?.email}</h2>
-            {props.profileAuth.email === params.email && <button>edit</button>}
+            {props.profileAuth?.email === params.email && <button>edit</button>}
           </div>
           <p>{userResult[0]?.description}</p>
-          {props.profileAuth.email === params.email && <button>edit</button>}
+          {props.profileAuth?.email === params.email && <button>edit</button>}
           <h3>
             Follwing: {userResult[0]?.following}, Followers:{" "}
             {userResult[0]?.followers}

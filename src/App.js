@@ -99,7 +99,7 @@ function App() {
 
   useEffect(() => {
     getUsers();
-    console.log(activeUser);
+
     getBlocksList();
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
