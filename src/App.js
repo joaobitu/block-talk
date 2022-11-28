@@ -99,7 +99,7 @@ function App() {
 
   useEffect(() => {
     getUsers();
-
+    console.log(activeUser);
     getBlocksList();
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
@@ -119,7 +119,7 @@ function App() {
           <Route path="/:email" element={<Homepage />} />
           <Route
             path="/profile/:email"
-            element={<Profile userData={users} />}
+            element={<Profile userData={users} profileAuth={activeUser} />}
           />
           <Route path="/follows/:email" element={<Follows />} />
         </Routes>

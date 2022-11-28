@@ -270,3 +270,72 @@ body {
     color: white;
     font-weight: 700;
 }
+
+/*profile layout config*/
+
+.profile {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    grid-column: 2/3;
+}
+
+.profile-details {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 4fr ;
+    border: 3px solid var(--main-color-dark);
+    padding: 10px;
+}
+
+.profile-details-left-section,
+.profile-details-right-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-details-left-section button
+ {
+    
+    align-self: center;
+}
+
+.profile-details-right-section > button {
+    align-self: flex-end;
+}
+
+.profile-details-right-section button,
+.profile-details-left-section button,
+.profile-details-right-section div button
+ {
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}
+.profile-details-left-section {
+        gap: 10px;    
+        justify-self: center;
+        align-self: center;
+        padding: 10px;
+}
+.profile-details-right-section {
+    padding: 10px;
+}
+.profile-details-left-section img {
+    height: auto;
+    width: 100%;
+    border-radius: 20px;
+    padding-left: 0;
+}
+
+.profile-details-right-section div {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.profile-details-right-section h3 {
+    border-top: 1px solid var(--main-color-light);
+}
