@@ -107,11 +107,11 @@ body {
 .sidebar ul li {
     border-bottom: 1px solid white;
 }
-.sidebar-menu-options {
+.sidebar h2 {
     color: white;
 }
 
-.sidebar-menu-options:hover {
+.sidebar h2:hover {
     color: var(--main-color-light);
 }
 

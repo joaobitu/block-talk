@@ -1,23 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <ul>
         <li>
-          <a href="" className="sidebar-menu-options">
+          <Link to={`/${props.profileAuth?.email}`}>
             <h2>Homepage</h2>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="" className="sidebar-menu-options">
+          <Link to={`/profile/${props.profileAuth?.email}`}>
             <h2>Profile</h2>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="" className="sidebar-menu-options">
+          <Link to={`/follows/${props.profileAuth?.email}`}>
             <h2>Follows</h2>
-          </a>
+          </Link>
         </li>
       </ul>
       <button onClick={() => props.toggleNewBlock()}>New Block</button>

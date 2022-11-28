@@ -14,18 +14,24 @@ import {
 import { auth } from "./firebase-config";
 import { AuthModal } from "./components/Auth-modal";
 import { NewBlock } from "./components/New-block-modal";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Homepage } from "./components/Homepage";
+import { Profile } from "./components/Profile";
+import { Follows } from "./components/Follows";
 
 function App() {
   const [blocks, setBlocks] = useState([]);
   const blocksCollectionRef = collection(db, "blocks");
 
-  //add all of these states to onchange functions in the inputs for registering and login!
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [activeUser, setActiveUser] = useState({}); // pass active user to header and other places so I can access active user data, and display it!
+  const userCollectionRef = collection(db, "users");
+  const [users, setUsers] = useState([]);
+
+  const [activeUser, setActiveUser] = useState({});
 
   const [authModalToggle, setAuthModalToggle] = useState(false);
   const [newBlockModal, setNewBlockModal] = useState(false);
@@ -77,12 +83,23 @@ function App() {
       data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
-        user: doc.user,
+      }))
+    );
+  };
+
+  const getUsers = async () => {
+    const data = await getDocs(userCollectionRef);
+    setUsers(
+      data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
       }))
     );
   };
 
   useEffect(() => {
+    getUsers();
+
     getBlocksList();
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
@@ -90,27 +107,37 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header
-        toggleRegisterLogIn={toggleAuthModal}
-        profileAuth={activeUser}
-        logoutAction={logout}
-      />
-      <Sidebar toggleNewBlock={toggleBlockModal} />
-      <Description />
-      {authModalToggle && (
-        <AuthModal
+    <BrowserRouter>
+      <div className="App">
+        <Header
           toggleRegisterLogIn={toggleAuthModal}
-          emailRegisterValue={setRegisterEmail}
-          passwordRegisterValue={setRegisterPassword}
-          emailLoginValue={setLoginEmail}
-          passwordLoginValue={setLoginPassword}
-          registerSubmit={register}
-          loginSubmit={login}
+          profileAuth={activeUser}
+          logoutAction={logout}
         />
-      )}
-      {newBlockModal && <NewBlock toggleNewBlock={toggleBlockModal} />}
-    </div>
+        <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
+        <Routes>
+          <Route path="/:email" element={<Homepage />} />
+          <Route
+            path="/profile/:email"
+            element={<Profile userData={users} />}
+          />
+          <Route path="/follows/:email" element={<Follows />} />
+        </Routes>
+        <Description />
+        {authModalToggle && (
+          <AuthModal
+            toggleRegisterLogIn={toggleAuthModal}
+            emailRegisterValue={setRegisterEmail}
+            passwordRegisterValue={setRegisterPassword}
+            emailLoginValue={setLoginEmail}
+            passwordLoginValue={setLoginPassword}
+            registerSubmit={register}
+            loginSubmit={login}
+          />
+        )}
+        {newBlockModal && <NewBlock toggleNewBlock={toggleBlockModal} />}
+      </div>
+    </BrowserRouter>
   );
 }
 
