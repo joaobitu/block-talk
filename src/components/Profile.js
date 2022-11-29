@@ -8,7 +8,7 @@ export const Profile = (props) => {
 
   useEffect(() => {
     let resultObject = props.userData.filter((obj) => {
-      return obj.email == params.email;
+      return obj.email === params.email;
     });
 
     setUserResult(resultObject);
@@ -32,8 +32,20 @@ export const Profile = (props) => {
             <button onClick={() => props.profileUpdateToggle()}>edit</button>
           )}
           <h3>
-            Follwing: {userResult[0]?.following}, Followers:{" "}
+            Following: {userResult[0]?.following}, Followers:{" "}
             {userResult[0]?.followers}
+            {props.profileAuth?.email !== params.email && (
+              <button
+                onClick={() =>
+                  props.followButton(
+                    props.profileAuth?.email,
+                    userResult[0]?.email
+                  )
+                }
+              >
+                Follow
+              </button>
+            )}
           </h3>
         </div>
       </div>

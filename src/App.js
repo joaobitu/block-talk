@@ -68,7 +68,9 @@ function App() {
         await addDoc(userCollectionRef, {
           email: registerEmail,
           followers: 0,
+          followersList: [],
           following: 0,
+          followingList: [],
           pictureURL:
             "https://www.kindpng.com/picc/m/429-4296037_empty-profile-picture-jpg-hd-png-download.png",
           blocks: [],
@@ -79,6 +81,47 @@ function App() {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const followingStatus = async (loggedUser, targetUser) => {
+    const loggedInUserData = users.filter(
+      (element) => element.email === loggedUser
+    )[0];
+    console.log(loggedInUserData.followingList.includes(targetUser));
+    if (loggedInUserData.followingList.includes(targetUser)) return true;
+    return false;
+  };
+  const follow = async (loggedUser, targetUser) => {
+    const isFollowing = await followingStatus(loggedUser, targetUser);
+    console.log(isFollowing);
+    if (isFollowing) {
+      return;
+    }
+
+    // first I am adding the target to following
+    const properIDLoggedIn = users.filter(
+      (element) => element.email === loggedUser
+    )[0];
+    console.log(properIDLoggedIn);
+    const properIDTarget = users.filter(
+      (element) => element.email === targetUser
+    )[0];
+
+    const userDoc = doc(db, "users", properIDLoggedIn.id);
+    const targetUserDoc = doc(db, "users", properIDTarget.id);
+
+    const newFollowing = {
+      followingList: properIDLoggedIn.followingList.concat(targetUser),
+      following: properIDLoggedIn.following + 1,
+    };
+    // second adding the user to targets followers
+
+    const newFollower = {
+      followersList: properIDTarget.followersList.concat(loggedUser),
+      followers: properIDTarget.followers + 1,
+    };
+    await updateDoc(userDoc, newFollowing);
+    await updateDoc(targetUserDoc, newFollower);
   };
 
   const updateProfile = async (e, id) => {
@@ -121,6 +164,18 @@ function App() {
     );
   };
 
+  const addBlock = async (e, user) => {
+    e.preventDefault();
+    await addDoc(blocksCollectionRef, {
+      comments: [],
+      commentsCount: 0,
+      content: e.target.elements[0].value,
+      userOwner: user,
+      likes: 0,
+      date: new Date().toISOString(),
+    });
+  };
+
   const getUsers = async () => {
     const data = await getDocs(userCollectionRef);
     setUsers(
@@ -150,7 +205,7 @@ function App() {
         />
         <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
         <Routes>
-          <Route path="/:email" element={<Homepage />} />
+          <Route path="/:email" element={<Homepage blocksList={blocks} />} />
           <Route
             path="/profile/:email"
             element={
@@ -160,6 +215,7 @@ function App() {
                 profileUpdateSubmit={updateProfile}
                 profileUpdateToggle={toggleProfileUpdateModal}
                 profileModalValidity={profileUpdateModal}
+                followButton={follow}
               />
             }
           />
@@ -177,10 +233,26 @@ function App() {
             loginSubmit={login}
           />
         )}
-        {newBlockModal && <NewBlock toggleNewBlock={toggleBlockModal} />}
+        {newBlockModal && (
+          <NewBlock
+            toggleNewBlock={toggleBlockModal}
+            profileAuth={activeUser}
+            userData={users}
+            addNewBlock={addBlock}
+            updateBlocksList={getBlocksList}
+          />
+        )}
       </div>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+/*
+Follow/Unfollow functionality,
+
+Follow:
+when someone follows, the other person should get 
+a follower, and the active user should get a following
+ */

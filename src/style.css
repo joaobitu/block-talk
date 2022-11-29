@@ -93,6 +93,7 @@ body {
 .sidebar {
     background-color: var(--main-color-basic);
     position: sticky;
+    top: 0;
     height: 100vh;
     grid-column: 1/2;
     display: flex;
@@ -146,6 +147,8 @@ body {
     color: rgb(90, 90, 90);
     box-shadow: var(--layout-shadow);
     position: sticky;
+    top: 0;
+    height: fit-content;
 }
 .description h3 a {
     color: rgb(90, 90, 90);
@@ -247,11 +250,12 @@ body {
     grid-column: 2/3;
     resize: none;
     padding: 5px;
+    max-width: 90%;
     
     
 }
 
-.new-block-modal > button {
+.new-block-modal form > button {
     grid-column: 2/3;
     grid-row: 2/3;
     align-self: flex-end;
@@ -371,4 +375,49 @@ body {
     background-color: var(--main-color-dark);
     color: white;
     font-weight: 700;
+}
+
+/*Homepage Layout should probably reuse for profile page*/
+
+.homepage {
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
+
+.blocks-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.block {
+    padding: 10px;
+    border: 3px solid var(--main-color-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+.block p {
+    margin-top: 0;
+    margin-left: 10px;
+    display: block; /* or inline-block, at least its a block element */
+    width: 100%; /* or width is certain by parent element */
+    height: auto; /* height cannot be defined */
+    word-break: break-all; /*  */
+    word-wrap: break-word; /* if you want to cut the complete word */
+    white-space: normal; 
+    padding: 1px;
+   
+}
+
+.block h4 {
+    border-top: 2px solid var(--main-color-light);
+    margin: 0;
+}
+.block h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
 }
