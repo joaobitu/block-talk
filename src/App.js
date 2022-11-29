@@ -4,7 +4,7 @@ import { Header } from "./components/Header";
 import { Description } from "./components/Description";
 import { useEffect, useState } from "react";
 import { db } from "./firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -35,6 +35,11 @@ function App() {
 
   const [authModalToggle, setAuthModalToggle] = useState(false);
   const [newBlockModal, setNewBlockModal] = useState(false);
+  const [profileUpdateModal, setProfileUpdateModal] = useState(false);
+
+  const toggleProfileUpdateModal = () => {
+    setProfileUpdateModal(!profileUpdateModal);
+  };
 
   const toggleBlockModal = () => {
     setNewBlockModal(!newBlockModal);
@@ -56,6 +61,17 @@ function App() {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const updateProfile = async (e, id) => {
+    e.preventDefault();
+    const userDoc = doc(db, "users", id);
+    console.log(e);
+    const newFields = {
+      description: e.target.elements[2].value,
+      pictureURL: e.target.elements[1].value,
+    };
+    await updateDoc(userDoc, newFields);
   };
 
   const login = async (e) => {
@@ -119,7 +135,15 @@ function App() {
           <Route path="/:email" element={<Homepage />} />
           <Route
             path="/profile/:email"
-            element={<Profile userData={users} profileAuth={activeUser} />}
+            element={
+              <Profile
+                userData={users}
+                profileAuth={activeUser}
+                profileUpdateSubmit={updateProfile}
+                profileUpdateToggle={toggleProfileUpdateModal}
+                profileModalValidity={profileUpdateModal}
+              />
+            }
           />
           <Route path="/follows/:email" element={<Follows />} />
         </Routes>

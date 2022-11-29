@@ -166,6 +166,7 @@ body {
     top: calc(50% - 25vh);
     left: calc(50% - 25vw);
     border: 3px solid var(--main-color-light);
+    background-color: white;
 }
 
 .auth-modal div {
@@ -232,6 +233,7 @@ body {
     border: 3px solid var(--main-color-light);
     align-items: center;
     justify-items: center;
+    background-color: white;
 }
 
 .new-block-modal img {
@@ -325,6 +327,7 @@ body {
 }
 .profile-details-left-section img {
     height: auto;
+    max-height: 150px;
     width: 100%;
     border-radius: 20px;
     padding-left: 0;
@@ -338,4 +341,34 @@ body {
 
 .profile-details-right-section h3 {
     border-top: 1px solid var(--main-color-light);
+}
+
+.profile form {
+    position: absolute;
+    top: 2%;
+    left: 40%;
+    width: 20%;
+    border: #a7f3d0 3px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+}
+.profile form button:last-child {
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}
+.profile form button:first-child {
+    align-self: flex-end;
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
 }
