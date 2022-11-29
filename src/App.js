@@ -4,7 +4,13 @@ import { Header } from "./components/Header";
 import { Description } from "./components/Description";
 import { useEffect, useState } from "react";
 import { db } from "./firebase-config";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  doc,
+  addDoc,
+} from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -58,6 +64,18 @@ function App() {
         registerEmail,
         registerPassword
       );
+      if (user) {
+        await addDoc(userCollectionRef, {
+          email: registerEmail,
+          followers: 0,
+          following: 0,
+          pictureURL:
+            "https://www.kindpng.com/picc/m/429-4296037_empty-profile-picture-jpg-hd-png-download.png",
+          blocks: [],
+          description:
+            "This is a stock description, to personalize your description just click the edit button",
+        });
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -120,7 +138,7 @@ function App() {
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
     });
-  }, []);
+  }, [activeUser]);
 
   return (
     <BrowserRouter>
