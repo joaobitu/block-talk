@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Profile = (props) => {
   const [userResult, setUserResult] = useState([]);
@@ -28,9 +29,7 @@ export const Profile = (props) => {
             <h2>{userResult[0]?.email}</h2>
           </div>
           <p>{userResult[0]?.description}</p>
-          {props.profileAuth?.email === params.email && (
-            <button onClick={() => props.profileUpdateToggle()}>edit</button>
-          )}
+
           <h3>
             Following: {userResult[0]?.following}, Followers:{" "}
             {userResult[0]?.followers}{" "}
@@ -57,6 +56,11 @@ export const Profile = (props) => {
               >
                 Unfollow
               </button>
+            )}
+            {props.profileAuth?.email && (
+              <Link to={`/follows/${params.email}`}>
+                <button>See Follows</button>
+              </Link>
             )}
           </h3>
         </div>

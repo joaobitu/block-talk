@@ -20,9 +20,7 @@ export const Homepage = (props) => {
             <h3>{obj.userOwner}</h3>
           </Link>
           <p>{obj.content}</p>
-          <h4>
-            Likes: {obj.likes}, Comments: {obj.commentsCount}
-          </h4>
+          <h4>Comments: {obj.commentsCount}</h4>
           <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
         </div>
       );
@@ -38,9 +36,7 @@ export const Homepage = (props) => {
               <h3>{obj.userOwner}</h3>
             </Link>
             <p>{obj.content}</p>
-            <h4>
-              Likes: {obj.likes}, Comments: {obj.commentsCount}
-            </h4>
+            <h4>Comments: {obj.commentsCount}</h4>
             <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
           </div>
         );

@@ -367,6 +367,7 @@ body {
     background-color: var(--main-color-dark);
     color: white;
     font-weight: 700;
+    
 }
 .profile form button:first-child {
     align-self: flex-end;
@@ -376,7 +377,9 @@ body {
     color: white;
     font-weight: 700;
 }
-
+.profile-details-right-section button {
+    margin-left: 5px;
+}
 /*Homepage Layout should probably reuse block for profile page*/
 
 .homepage {
@@ -434,4 +437,31 @@ body {
     font-weight: 700;
 }
 
+/*Follows Layout!*/
+.follows {
+    grid-column: 2/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+    margin: 10px;
+}
 
+.profile-follows-list-element {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-follows-list-element button {
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}
+
+
+.follows > * > div  {
+    margin-right: 20px;
+    padding-left: 5px;
+}

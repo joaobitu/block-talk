@@ -216,7 +216,6 @@ function App() {
       commentsCount: 0,
       content: e.target.elements[0].value,
       userOwner: user,
-      likes: 0,
       date: new Date().toISOString(),
     });
   };
@@ -274,7 +273,10 @@ function App() {
               />
             }
           />
-          <Route path="/follows/:email" element={<Follows />} />
+          <Route
+            path="/follows/:email"
+            element={<Follows userData={users} />}
+          />
         </Routes>
         <Description />
         {authModalToggle && (
