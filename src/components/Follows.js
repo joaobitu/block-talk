@@ -8,7 +8,6 @@ export const Follows = (props) => {
   let params = useParams();
 
   useEffect(() => {
-    console.log(params.email);
     const followingListRef = props.userData
       ?.filter((obj) => obj.email === params.email)[0]
       ?.followingList.map((obj, index) => {

@@ -24,6 +24,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Homepage } from "./components/Homepage";
 import { Profile } from "./components/Profile";
 import { Follows } from "./components/Follows";
+import { ExtendedBlock } from "./components/Extended-Block";
 
 function App() {
   const [blocks, setBlocks] = useState([]);
@@ -220,6 +221,23 @@ function App() {
     });
   };
 
+  const addComment = async (postID, currentUser, e) => {
+    if (!e.target.elements[0].value) return;
+
+    e.preventDefault();
+    const blockRef = blocks.filter((obj) => obj.id === postID)[0];
+    const blockDoc = doc(db, "blocks", blockRef.id);
+
+    const newComment = {
+      comments: blockRef.comments.concat({
+        content: e.target.elements[0].value,
+        owner: currentUser,
+        date: new Date().toISOString(),
+      }),
+    };
+    await updateDoc(blockDoc, newComment);
+  };
+
   const getUsers = async () => {
     const data = await getDocs(userCollectionRef);
     setUsers(
@@ -276,6 +294,16 @@ function App() {
           <Route
             path="/follows/:email"
             element={<Follows userData={users} />}
+          />
+          <Route
+            path="/posts/:id"
+            element={
+              <ExtendedBlock
+                blocksList={blocks}
+                addCommentSubmit={addComment}
+                profileAuth={activeUser}
+              />
+            }
           />
         </Routes>
         <Description />
