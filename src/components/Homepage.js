@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+
 import { isAfter, formatISO, parseISO } from "date-fns";
+import { Link } from "react-router-dom";
 
 export const Homepage = (props) => {
-  let params = useParams();
-  const [blocksResult, setBlocksResult] = useState([]);
+  const [blocksResultGlobal, setBlocksResultGlobal] = useState([]);
+  const [blocksResultFollowing, setBlocksResultFollowing] = useState([]);
+  const [toggleGlobalOrFollowing, setToggleGlobalOrFollowing] = useState(false);
 
   useEffect(() => {
     let blocksListReference = props.blocksList;
@@ -14,7 +16,9 @@ export const Homepage = (props) => {
     let globalBlocks = blocksListReference.map((obj, index) => {
       return (
         <div className="block" key={index}>
-          <h3>{obj.userOwner}</h3>
+          <Link to={`/profile/${obj.userOwner}`}>
+            <h3>{obj.userOwner}</h3>
+          </Link>
           <p>{obj.content}</p>
           <h4>
             Likes: {obj.likes}, Comments: {obj.commentsCount}
@@ -23,13 +27,42 @@ export const Homepage = (props) => {
         </div>
       );
     });
-    setBlocksResult(globalBlocks);
+    let followingBlocks = blocksListReference
+      .filter((obj) =>
+        props.validateFollowing(props.profileAuth?.email, obj.userOwner)
+      )
+      .map((obj, index) => {
+        return (
+          <div className="block" key={index}>
+            <Link to={`/profile/${obj.userOwner}`}>
+              <h3>{obj.userOwner}</h3>
+            </Link>
+            <p>{obj.content}</p>
+            <h4>
+              Likes: {obj.likes}, Comments: {obj.commentsCount}
+            </h4>
+            <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
+          </div>
+        );
+      });
+    setBlocksResultFollowing(followingBlocks);
+    setBlocksResultGlobal(globalBlocks);
   }, [props.blocksList]);
 
   useEffect(() => {}, []);
   return (
     <div className="homepage">
-      <div className="blocks-section">{blocksResult}</div>
+      <div className="sorting-buttons">
+        <button
+          onClick={() => setToggleGlobalOrFollowing(!toggleGlobalOrFollowing)}
+        >
+          {(!toggleGlobalOrFollowing && "Following Only") || "Global Blocks"}
+        </button>
+      </div>
+      <div className="blocks-section">
+        {!toggleGlobalOrFollowing && blocksResultGlobal}
+        {toggleGlobalOrFollowing && blocksResultFollowing}
+      </div>
     </div>
   );
 };

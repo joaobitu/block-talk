@@ -83,7 +83,7 @@ function App() {
     }
   };
 
-  const followingStatus = async (loggedUser, targetUser) => {
+  const followingStatus = (loggedUser, targetUser) => {
     const loggedInUserData = users.filter(
       (element) => element.email === loggedUser
     )[0];
@@ -91,6 +91,7 @@ function App() {
     if (loggedInUserData.followingList.includes(targetUser)) return true;
     return false;
   };
+
   const follow = async (loggedUser, targetUser) => {
     //checks to see if it is following, if it is, return
     const isFollowing = await followingStatus(loggedUser, targetUser);
@@ -249,7 +250,16 @@ function App() {
         />
         <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
         <Routes>
-          <Route path="/:email" element={<Homepage blocksList={blocks} />} />
+          <Route
+            path="/:email"
+            element={
+              <Homepage
+                blocksList={blocks}
+                profileAuth={activeUser}
+                validateFollowing={followingStatus}
+              />
+            }
+          />
           <Route
             path="/profile/:email"
             element={
@@ -261,7 +271,6 @@ function App() {
                 profileModalValidity={profileUpdateModal}
                 followButton={follow}
                 unfollowButton={unfollow}
-                validateFollowing={followingStatus}
               />
             }
           />

@@ -377,7 +377,7 @@ body {
     font-weight: 700;
 }
 
-/*Homepage Layout should probably reuse for profile page*/
+/*Homepage Layout should probably reuse block for profile page*/
 
 .homepage {
     grid-column: 2/3;
@@ -385,6 +385,7 @@ body {
     flex-direction: column;
     padding: 10px;
     margin: 10px;
+    gap: 10px;
 }
 
 .blocks-section {
@@ -420,4 +421,17 @@ body {
 .block h3 {
     margin-top: 0;
     margin-bottom: 5px;
+    color: black;
 }
+.block h3:hover {
+    color: var(--main-color-dark);
+}
+.sorting-buttons button {
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}
+
+
