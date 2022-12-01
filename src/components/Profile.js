@@ -33,7 +33,7 @@ export const Profile = (props) => {
           )}
           <h3>
             Following: {userResult[0]?.following}, Followers:{" "}
-            {userResult[0]?.followers}
+            {userResult[0]?.followers}{" "}
             {props.profileAuth?.email !== params.email && (
               <button
                 onClick={() =>
@@ -44,6 +44,18 @@ export const Profile = (props) => {
                 }
               >
                 Follow
+              </button>
+            )}
+            {props.profileAuth?.email !== params.email && (
+              <button
+                onClick={() =>
+                  props.unfollowButton(
+                    props.profileAuth?.email,
+                    userResult[0]?.email
+                  )
+                }
+              >
+                Unfollow
               </button>
             )}
           </h3>

@@ -92,8 +92,9 @@ function App() {
     return false;
   };
   const follow = async (loggedUser, targetUser) => {
+    //checks to see if it is following, if it is, return
     const isFollowing = await followingStatus(loggedUser, targetUser);
-    console.log(isFollowing);
+
     if (isFollowing) {
       return;
     }
@@ -123,7 +124,50 @@ function App() {
     await updateDoc(userDoc, newFollowing);
     await updateDoc(targetUserDoc, newFollower);
   };
+  const unfollow = async (loggedUser, targetUser) => {
+    //checks to see if it is following, if it isnt, return
+    const isFollowing = await followingStatus(loggedUser, targetUser);
 
+    if (!isFollowing) {
+      return;
+    }
+    const properIDLoggedIn = users.filter(
+      (element) => element.email === loggedUser
+    )[0];
+
+    const properIDTarget = users.filter(
+      (element) => element.email === targetUser
+    )[0];
+
+    const userDoc = doc(db, "users", properIDLoggedIn.id);
+    const targetUserDoc = doc(db, "users", properIDTarget.id);
+
+    const removeFollowing = {
+      followingList: properIDLoggedIn.followingList
+        .slice(properIDLoggedIn.followingList.indexOf(targetUser) + 1)
+        .concat(
+          properIDLoggedIn.followingList.slice(
+            0,
+            properIDLoggedIn.followingList.indexOf(targetUser)
+          )
+        ),
+      following: properIDLoggedIn.following - 1,
+    };
+
+    const removeFollower = {
+      followersList: properIDTarget.followersList
+        .slice(properIDTarget.followersList.indexOf(loggedUser) + 1)
+        .concat(
+          properIDTarget.followersList.slice(
+            0,
+            properIDTarget.followersList.indexOf(loggedUser)
+          )
+        ),
+      followers: properIDTarget.followers - 1,
+    };
+    await updateDoc(userDoc, removeFollowing);
+    await updateDoc(targetUserDoc, removeFollower);
+  };
   const updateProfile = async (e, id) => {
     e.preventDefault();
     const userDoc = doc(db, "users", id);
@@ -216,6 +260,8 @@ function App() {
                 profileUpdateToggle={toggleProfileUpdateModal}
                 profileModalValidity={profileUpdateModal}
                 followButton={follow}
+                unfollowButton={unfollow}
+                validateFollowing={followingStatus}
               />
             }
           />
