@@ -425,6 +425,7 @@ body {
     margin-top: 0;
     margin-bottom: 5px;
     color: black;
+    width: fit-content;
 }
 .block h3:hover {
     color: var(--main-color-dark);
@@ -432,6 +433,19 @@ body {
 .sorting-buttons button {
     padding: 3px 5px 3px 5px;
     font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+}
+
+.block h5 {
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+
+.block button {
+    padding: 3px 5px 3px 5px;
+    font-size: small;
     background-color: var(--main-color-dark);
     color: white;
     font-weight: 700;
@@ -474,5 +488,33 @@ body {
     margin: 10px;
     display: flex;
     flex-direction: column;
+}
+
+.comments-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.extended-block form {
+    margin-top: 5px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px
+}
+.extended-block form button {
+    padding: 3px 5px 3px 5px;
+    font-size: large;
+    background-color: var(--main-color-dark);
+    color: white;
+    font-weight: 700;
+    align-self: flex-end;
+}
+
+.extended-block textarea {
+    resize: none;
 }
 

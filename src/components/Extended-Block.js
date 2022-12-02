@@ -11,9 +11,19 @@ export const ExtendedBlock = (props) => {
 
   useEffect(() => {
     let blocksListReference = props.blocksList;
-    const OP = blocksListReference
-      .filter((obj) => obj.id === params.id)
-      .map((obj, index) => {
+    const OP = blocksListReference.filter((obj) => obj.id === params.id);
+
+    const commentsRef = blocksListReference.filter(
+      (obj) => obj.id === params.id
+    )[0].comments;
+
+    setCommentsList(commentsRef);
+    setParentBlock(OP);
+  }, [props.blocksList]);
+
+  return (
+    <div className="extended-block">
+      {parentBlock.map((obj, index) => {
         return (
           <div className="block" key={index}>
             <Link to={`/profile/${obj.userOwner}`}>
@@ -25,44 +35,37 @@ export const ExtendedBlock = (props) => {
             <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
           </div>
         );
-      });
-
-    setParentBlock(OP);
-  }, [props.blocksList]);
-
-  useEffect(() => {
-    const commentsRef = props.blocksList.filter((obj) => obj.id === params.id);
-
-    const commentsResult = commentsRef[0].comments.map((obj, index) => {
-      console.log(obj);
-      return (
-        <div className="block comment" key={index}>
-          <Link to={`/profile/${obj.owner}`}>
-            <h3>{obj.owner}</h3>
-          </Link>
-          <p>{obj.content}</p>
-
-          <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
-        </div>
-      );
-    });
-    setCommentsList(commentsResult);
-  }, [parentBlock]);
-
-  return (
-    <div className="extended-block">
-      {parentBlock}
+      })}
       <form
         onSubmit={(e) =>
           props.addCommentSubmit(params.id, props.profileAuth?.email, e)
         }
       >
-        <textarea rows="4" cols="60" maxLength="280"></textarea>
+        <textarea
+          rows="4"
+          cols="60"
+          maxLength="280"
+          placeholder="write your comment here!"
+        ></textarea>
         <button>Add Comment</button>
       </form>
       <h2>Comments:</h2>
 
-      {commentsList}
+      <div class="comments-list-container">
+        {commentsList?.map((obj, index) => {
+          return (
+            <div className="block comment" key={index}>
+              <Link to={`/profile/${obj.owner}`}>
+                <h3>{obj.owner}</h3>
+              </Link>
+              <p>{obj.content}</p>
+              <h5>
+                {formatISO(new Date(obj.date), { representation: "date" })}
+              </h5>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

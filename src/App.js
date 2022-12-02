@@ -234,6 +234,7 @@ function App() {
         owner: currentUser,
         date: new Date().toISOString(),
       }),
+      commentsCount: blockRef.commentsCount + 1,
     };
     await updateDoc(blockDoc, newComment);
   };

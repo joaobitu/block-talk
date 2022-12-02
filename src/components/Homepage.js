@@ -20,10 +20,13 @@ export const Homepage = (props) => {
             <h3>{obj.userOwner}</h3>
           </Link>
           <p>{obj.content}</p>
-          <h4>Comments: {obj.commentsCount}</h4>
-          <Link to={`/posts/${obj.id}`}>
-            <button>Comment</button>
-          </Link>
+          <h4>
+            Comments: {obj.commentsCount}{" "}
+            <Link to={`/posts/${obj.id}`}>
+              <button>Comment</button>
+            </Link>
+          </h4>
+
           <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
         </div>
       );
@@ -39,10 +42,13 @@ export const Homepage = (props) => {
               <h3>{obj.userOwner}</h3>
             </Link>
             <p>{obj.content}</p>
-            <h4>Comments: {obj.commentsCount}</h4>
-            <Link to={`/posts/${obj.id}`}>
-              <button>Comment</button>
-            </Link>
+            <h4>
+              Comments: {obj.commentsCount}{" "}
+              <Link to={`/posts/${obj.id}`}>
+                <button>Comment</button>
+              </Link>
+            </h4>
+
             <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>
           </div>
         );
