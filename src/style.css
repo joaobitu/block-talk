@@ -60,14 +60,19 @@ body {
     outline: none;
 }
 
-.login-signup {
+.login-signup
+ {
     color: white;
     border-bottom: 1px solid var(--main-color-light);
 }
-
-.header-right h3:hover {
+.logout-button {
+    color: white;
+}
+.header-right > h3:hover,
+.logout-button:hover {
     color: var(--main-color-light);
 }
+
 
 .header form button {
     position: relative;

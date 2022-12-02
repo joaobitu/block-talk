@@ -1,5 +1,6 @@
 import React from "react";
 import SearchIcon from "../assets/magnify.png";
+import { Link } from "react-router-dom";
 
 export const Header = (props) => {
   //must add the onClick to Login/ Sign Up
@@ -17,7 +18,11 @@ export const Header = (props) => {
         <h3>{props.profileAuth?.email}</h3>
 
         {props.profileAuth ? (
-          <h3 onClick={() => props.logoutAction()}>Logout</h3>
+          <Link to="/">
+            <h3 onClick={() => props.logoutAction()} className="logout-button">
+              Logout
+            </h3>
+          </Link>
         ) : (
           <h3 onClick={() => props.toggleRegisterLogIn()}>Login/Sign Up</h3>
         )}

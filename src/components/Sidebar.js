@@ -6,7 +6,7 @@ export const Sidebar = (props) => {
     <div className="sidebar">
       <ul>
         <li>
-          <Link to={`/${props.profileAuth?.email}`}>
+          <Link to={`/${props.profileAuth?.email || ""}`}>
             <h2>Homepage</h2>
           </Link>
         </li>

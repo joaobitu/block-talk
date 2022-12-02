@@ -13,11 +13,8 @@ export const ExtendedBlock = (props) => {
     let blocksListReference = props.blocksList;
     const OP = blocksListReference.filter((obj) => obj.id === params.id);
 
-    const commentsRef = blocksListReference.filter(
-      (obj) => obj.id === params.id
-    )[0].comments;
+    setCommentsList(OP[0]?.comments);
 
-    setCommentsList(commentsRef);
     setParentBlock(OP);
   }, [props.blocksList]);
 
@@ -45,13 +42,13 @@ export const ExtendedBlock = (props) => {
           rows="4"
           cols="60"
           maxLength="280"
-          placeholder="write your comment here!"
+          placeholder="write your comment here"
         ></textarea>
         <button>Add Comment</button>
       </form>
       <h2>Comments:</h2>
 
-      <div class="comments-list-container">
+      <div className="comments-list-container">
         {commentsList?.map((obj, index) => {
           return (
             <div className="block comment" key={index}>
