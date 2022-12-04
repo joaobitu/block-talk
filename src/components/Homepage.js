@@ -34,7 +34,10 @@ export const Homepage = (props) => {
     let followingBlocks = blocksListReference
       .filter((obj) => {
         if (props.profileAuth?.email) {
-          props.validateFollowing(props.profileAuth?.email, obj.userOwner);
+          return props.validateFollowing(
+            props.profileAuth?.email,
+            obj.userOwner
+          );
         }
       })
       .map((obj, index) => {
