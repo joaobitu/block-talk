@@ -1,13 +1,19 @@
 import React from "react";
 import SearchIcon from "../assets/magnify.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = (props) => {
+  const navigate = useNavigate();
   //must add the onClick to Login/ Sign Up
   return (
     <div className="header">
       <h1>BlockTalk</h1>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigate(`/profile/${e.target.elements[0].value}`);
+        }}
+      >
         <h4>Find user</h4>
         <input type="text" />
         <button>
