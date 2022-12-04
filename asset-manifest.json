@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/block-talk/static/css/main.f53229e4.css",
-    "main.js": "/block-talk/static/js/main.76113fb9.js",
+    "main.js": "/block-talk/static/js/main.b058ac0e.js",
     "index.html": "/block-talk/index.html",
     "main.f53229e4.css.map": "/block-talk/static/css/main.f53229e4.css.map",
-    "main.76113fb9.js.map": "/block-talk/static/js/main.76113fb9.js.map"
+    "main.b058ac0e.js.map": "/block-talk/static/js/main.b058ac0e.js.map"
   },
   "entrypoints": [
     "static/css/main.f53229e4.css",
-    "static/js/main.76113fb9.js"
+    "static/js/main.b058ac0e.js"
   ]
 }
