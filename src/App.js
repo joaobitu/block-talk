@@ -20,7 +20,7 @@ import {
 import { auth } from "./firebase-config";
 import { AuthModal } from "./components/Auth-modal";
 import { NewBlock } from "./components/New-block-modal";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Homepage } from "./components/Homepage";
 import { Profile } from "./components/Profile";
 import { Follows } from "./components/Follows";
@@ -259,77 +259,72 @@ function App() {
   }, [activeUser]);
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header
-          toggleRegisterLogIn={toggleAuthModal}
-          profileAuth={activeUser}
-          logoutAction={logout}
+    <div className="App">
+      <Header
+        toggleRegisterLogIn={toggleAuthModal}
+        profileAuth={activeUser}
+        logoutAction={logout}
+      />
+      <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
+      <Routes>
+        <Route
+          path="/:email"
+          element={
+            <Homepage
+              blocksList={blocks}
+              profileAuth={activeUser}
+              validateFollowing={followingStatus}
+            />
+          }
         />
-        <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
-        <Routes>
-          <Route
-            path="/:email"
-            element={
-              <Homepage
-                blocksList={blocks}
-                profileAuth={activeUser}
-                validateFollowing={followingStatus}
-              />
-            }
-          />
-          <Route
-            path="/profile/:email"
-            element={
-              <Profile
-                userData={users}
-                profileAuth={activeUser}
-                profileUpdateSubmit={updateProfile}
-                profileUpdateToggle={toggleProfileUpdateModal}
-                profileModalValidity={profileUpdateModal}
-                followButton={follow}
-                unfollowButton={unfollow}
-              />
-            }
-          />
-          <Route
-            path="/follows/:email"
-            element={<Follows userData={users} />}
-          />
-          <Route
-            path="/posts/:id"
-            element={
-              <ExtendedBlock
-                blocksList={blocks}
-                addCommentSubmit={addComment}
-                profileAuth={activeUser}
-              />
-            }
-          />
-        </Routes>
-        <Description />
-        {authModalToggle && (
-          <AuthModal
-            toggleRegisterLogIn={toggleAuthModal}
-            emailRegisterValue={setRegisterEmail}
-            passwordRegisterValue={setRegisterPassword}
-            emailLoginValue={setLoginEmail}
-            passwordLoginValue={setLoginPassword}
-            registerSubmit={register}
-            loginSubmit={login}
-          />
-        )}
-        {newBlockModal && (
-          <NewBlock
-            toggleNewBlock={toggleBlockModal}
-            profileAuth={activeUser}
-            userData={users}
-            addNewBlock={addBlock}
-            updateBlocksList={getBlocksList}
-          />
-        )}
-      </div>
-    </BrowserRouter>
+        <Route
+          path="/profile/:email"
+          element={
+            <Profile
+              userData={users}
+              profileAuth={activeUser}
+              profileUpdateSubmit={updateProfile}
+              profileUpdateToggle={toggleProfileUpdateModal}
+              profileModalValidity={profileUpdateModal}
+              followButton={follow}
+              unfollowButton={unfollow}
+            />
+          }
+        />
+        <Route path="/follows/:email" element={<Follows userData={users} />} />
+        <Route
+          path="/posts/:id"
+          element={
+            <ExtendedBlock
+              blocksList={blocks}
+              addCommentSubmit={addComment}
+              profileAuth={activeUser}
+            />
+          }
+        />
+      </Routes>
+      <Description />
+      {authModalToggle && (
+        <AuthModal
+          toggleRegisterLogIn={toggleAuthModal}
+          emailRegisterValue={setRegisterEmail}
+          passwordRegisterValue={setRegisterPassword}
+          emailLoginValue={setLoginEmail}
+          passwordLoginValue={setLoginPassword}
+          registerSubmit={register}
+          loginSubmit={login}
+        />
+      )}
+      {newBlockModal && (
+        <NewBlock
+          toggleNewBlock={toggleBlockModal}
+          profileAuth={activeUser}
+          userData={users}
+          addNewBlock={addBlock}
+          updateBlocksList={getBlocksList}
+        />
+      )}
+    </div>
   );
 }
 
