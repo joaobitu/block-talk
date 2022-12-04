@@ -32,9 +32,11 @@ export const Homepage = (props) => {
       );
     });
     let followingBlocks = blocksListReference
-      .filter((obj) =>
-        props.validateFollowing(props.profileAuth?.email, obj.userOwner)
-      )
+      .filter((obj) => {
+        if (props.profileAuth?.email) {
+          props.validateFollowing(props.profileAuth?.email, obj.userOwner);
+        }
+      })
       .map((obj, index) => {
         return (
           <div className="block" key={index}>
