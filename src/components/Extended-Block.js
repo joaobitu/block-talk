@@ -16,6 +16,7 @@ export const ExtendedBlock = (props) => {
     setCommentsList(OP[0]?.comments);
 
     setParentBlock(OP);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.blocksList]);
 
   return (
@@ -34,9 +35,16 @@ export const ExtendedBlock = (props) => {
         );
       })}
       <form
-        onSubmit={(e) =>
-          props.addCommentSubmit(params.id, props.profileAuth?.email, e)
-        }
+        onSubmit={(e) => {
+          props.addCommentSubmit(params.id, props.profileAuth?.email, e);
+          console.log(
+            props.blocksList.filter((obj) => obj.id === params.id)[0]?.comments
+          );
+          setCommentsList(
+            props.blocksList.filter((obj) => obj.id === params.id)[0]?.comments
+          );
+          e.target.elements[0].value = "";
+        }}
       >
         <textarea
           rows="4"
@@ -59,6 +67,13 @@ export const ExtendedBlock = (props) => {
               <h5>
                 {formatISO(new Date(obj.date), { representation: "date" })}
               </h5>
+              {props.profileAuth?.email === obj.owner && (
+                <button
+                  onClick={() => props.deleteCommentClick(params.id, index)}
+                >
+                  Delete
+                </button>
+              )}
             </div>
           );
         })}

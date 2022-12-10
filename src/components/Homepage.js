@@ -25,6 +25,11 @@ export const Homepage = (props) => {
             <Link to={`/posts/${obj.id}`}>
               <button>Comment</button>
             </Link>
+            {props.profileAuth?.email === obj.userOwner && (
+              <button onClick={() => props.deleteSelectedBlock(obj.id)}>
+                Delete
+              </button>
+            )}
           </h4>
 
           <h5>{formatISO(new Date(obj.date), { representation: "date" })}</h5>

@@ -10,6 +10,7 @@ import {
   updateDoc,
   doc,
   addDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
@@ -221,7 +222,11 @@ function App() {
       date: new Date().toISOString(),
     });
   };
-
+  const deleteBlock = async (id) => {
+    const blockDoc = doc(db, "blocks", id);
+    await deleteDoc(blockDoc);
+    getBlocksList();
+  };
   const addComment = async (postID, currentUser, e) => {
     if (!e.target.elements[0].value) return;
 
@@ -234,12 +239,26 @@ function App() {
         content: e.target.elements[0].value,
         owner: currentUser,
         date: new Date().toISOString(),
+        index: blockRef.comments.length + 1,
       }),
       commentsCount: blockRef.commentsCount + 1,
     };
     await updateDoc(blockDoc, newComment);
+    getBlocksList();
   };
+  const deleteComment = async (postID, commentIndex) => {
+    const blockRef = blocks.filter((obj) => obj.id === postID)[0];
+    const blockDoc = doc(db, "blocks", blockRef.id);
 
+    const newComment = {
+      comments: blockRef.comments
+        .slice(0, commentIndex)
+        .concat(blockRef.comments.slice(commentIndex + 1)),
+      commentsCount: blockRef.commentsCount - 1,
+    };
+    await updateDoc(blockDoc, newComment);
+    getBlocksList();
+  };
   const getUsers = async () => {
     const data = await getDocs(userCollectionRef);
     setUsers(
@@ -299,6 +318,7 @@ function App() {
               blocksList={blocks}
               profileAuth={activeUser}
               validateFollowing={followingStatus}
+              deleteSelectedBlock={deleteBlock}
             />
           }
         />
@@ -313,6 +333,8 @@ function App() {
               profileModalValidity={profileUpdateModal}
               followButton={follow}
               unfollowButton={unfollow}
+              blocksList={blocks}
+              deleteSelectedBlock={deleteBlock}
             />
           }
         />
@@ -324,6 +346,7 @@ function App() {
               blocksList={blocks}
               addCommentSubmit={addComment}
               profileAuth={activeUser}
+              deleteCommentClick={deleteComment}
             />
           }
         />
