@@ -47,8 +47,8 @@ Overall it was incredibly interesting challenge.
 
 A social media application in real life is incredibly complex, and it takes tens of thousands of developers years to build and maintain it... So I had to define a scope that was reasonable within my circumstances... There are however features to improve here that I could eventually do, and those are:
 
-- ~~ Making the changes to some elements of the application dynamic, in not needing to refresh to reload the content and pull the data from the backend ~~
-- ~~ Adding the option to delete/edit Blocks (this was left out as I felt like it was something I didnt need further practicing giving I already did this in previous applications) ~~
+- ~~Making the changes to some elements of the application dynamic, in not needing to refresh to reload the content and pull the data from the backend~~
+- ~~Adding the option to delete/edit Blocks (this was left out as I felt like it was something I didnt need further practicing giving I already did this in previous applications)~~
 - Adding further barriers to avoid displaying null content (profile page inacessible before being logged in)
 - Adding a Different Color Scheme Option.
 
