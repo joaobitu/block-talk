@@ -67,7 +67,12 @@ export const Profile = (props) => {
       </div>
 
       {props.profileModalValidity && (
-        <form onSubmit={(e) => props.profileUpdateSubmit(e, userResult[0]?.id)}>
+        <form
+          onSubmit={(e) => {
+            props.profileUpdateSubmit(e, userResult[0]?.id);
+            props.profileUpdateToggle();
+          }}
+        >
           <button type="click" onClick={() => props.profileUpdateToggle()}>
             x
           </button>

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export const Header = (props) => {
   const navigate = useNavigate();
-  //must add the onClick to Login/ Sign Up
+
   return (
     <div className="header">
       <h1>BlockTalk</h1>

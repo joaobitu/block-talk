@@ -16,6 +16,7 @@ export const NewBlock = (props) => {
         onSubmit={(e) => {
           props.addNewBlock(e, props.profileAuth.email);
           props.updateBlocksList();
+          props.toggleNewBlock();
         }}
       >
         <textarea rows="4" cols="60" maxLength="280"></textarea>

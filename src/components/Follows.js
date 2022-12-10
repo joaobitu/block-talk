@@ -7,6 +7,7 @@ export const Follows = (props) => {
   const [followersList, setFollowersList] = useState([]);
   let params = useParams();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const followingListRef = props.userData
       ?.filter((obj) => obj.email === params.email)[0]
