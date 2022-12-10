@@ -32,6 +32,7 @@ export const Homepage = (props) => {
       );
     });
     let followingBlocks = blocksListReference
+      // eslint-disable-next-line array-callback-return
       .filter((obj) => {
         if (props.profileAuth?.email) {
           return props.validateFollowing(
@@ -60,6 +61,7 @@ export const Homepage = (props) => {
       });
     setBlocksResultFollowing(followingBlocks);
     setBlocksResultGlobal(globalBlocks);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.blocksList]);
 
   useEffect(() => {}, []);

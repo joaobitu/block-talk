@@ -1,12 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AuthModal = (props) => {
+  const navigate = useNavigate();
   return (
     <div className="auth-modal">
       <div>
         <h1>BlockTalk</h1>
       </div>
-      <form onSubmit={(e) => props.registerSubmit(e)}>
+      <form
+        onSubmit={(e) => {
+          props.registerSubmit(e);
+          props.toggleRegisterLogIn();
+          navigate(`/profile/${e.target.elements[0].value}`);
+        }}
+      >
         <h3>Sign Up:</h3>
         <label htmlFor="email">
           Email:
@@ -34,7 +42,13 @@ export const AuthModal = (props) => {
         <button>{">"}</button>
       </form>
 
-      <form onSubmit={(e) => props.loginSubmit(e)}>
+      <form
+        onSubmit={(e) => {
+          props.loginSubmit(e);
+          props.toggleRegisterLogIn();
+          navigate(`/profile/${e.target.elements[0].value}`);
+        }}
+      >
         <h3>Log In:</h3>
         <label htmlFor="email">
           Email:

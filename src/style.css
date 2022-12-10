@@ -83,8 +83,7 @@ body {
 }
 
 .header form button:hover {
-    height: 40px;
-    width: 40px;
+    transform: scale(1.1,1.1);
 }
 
 .header form button img {
@@ -157,9 +156,12 @@ body {
 }
 .description h3 a {
     color: rgb(90, 90, 90);
+    display: inline-block;
+    transition: all ease-out 0.5s;
+   
 }
 .description h3 a:hover {
-    font-size: 1.1em;
+    transform: scale(1.1,1.1);
 }
 
 /*Auth Modal Layout Config*/
@@ -522,4 +524,5 @@ body {
 .extended-block textarea {
     resize: none;
 }
+
 

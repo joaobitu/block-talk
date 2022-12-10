@@ -185,6 +185,7 @@ function App() {
     e.preventDefault();
     //pass this to the submit button of the login form
     try {
+      // eslint-disable-next-line no-unused-vars
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
@@ -256,6 +257,7 @@ function App() {
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeUser]);
 
   return (
@@ -264,9 +266,32 @@ function App() {
         toggleRegisterLogIn={toggleAuthModal}
         profileAuth={activeUser}
         logoutAction={logout}
+        userData={users}
       />
       <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
       <Routes>
+        <Route
+          path="/"
+          element={
+            <div
+              className="welcome-page"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              <h1>Welcome to Block Talk!</h1>
+              <p>
+                Please Create your account by clicking the button on the top
+                right side, and feel free to try out the application! for more
+                details check out the{" "}
+                <a href="https://github.com/joaobitu/block-talk">repository</a>!
+              </p>
+            </div>
+          }
+        />
         <Route
           path="/:email"
           element={
