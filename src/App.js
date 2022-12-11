@@ -126,6 +126,7 @@ function App() {
     };
     await updateDoc(userDoc, newFollowing);
     await updateDoc(targetUserDoc, newFollower);
+    getUsers();
   };
   const unfollow = async (loggedUser, targetUser) => {
     //checks to see if it is following, if it isnt, return
@@ -170,16 +171,26 @@ function App() {
     };
     await updateDoc(userDoc, removeFollowing);
     await updateDoc(targetUserDoc, removeFollower);
+    getUsers();
   };
-  const updateProfile = async (e, id) => {
+  const updateProfile = async (e, id, email) => {
     e.preventDefault();
+
     const userDoc = doc(db, "users", id);
-    console.log(e);
+    const properIDTarget = users.filter(
+      (element) => element.email === email
+    )[0];
+
     const newFields = {
-      description: e.target.elements[2].value,
-      pictureURL: e.target.elements[1].value,
+      description: e.target.elements[2].value
+        ? e.target.elements[2].value
+        : properIDTarget.description,
+      pictureURL: e.target.elements[1].value
+        ? e.target.elements[1].value
+        : properIDTarget.pictureURL,
     };
     await updateDoc(userDoc, newFields);
+    getUsers();
   };
 
   const login = async (e) => {

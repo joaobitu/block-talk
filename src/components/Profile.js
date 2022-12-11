@@ -22,7 +22,10 @@ export const Profile = (props) => {
     let ownBlocks = blocksListReference
       // eslint-disable-next-line array-callback-return
       .filter((obj) => {
-        if (props.profileAuth?.email === obj.userOwner) {
+        if (
+          props.profileAuth?.email === obj.userOwner &&
+          props.profileAuth?.email === params.email
+        ) {
           return true;
         }
       })
@@ -107,7 +110,7 @@ export const Profile = (props) => {
       {props.profileModalValidity && (
         <form
           onSubmit={(e) => {
-            props.profileUpdateSubmit(e, userResult[0]?.id);
+            props.profileUpdateSubmit(e, userResult[0]?.id, params.email);
             props.profileUpdateToggle();
           }}
         >
@@ -116,11 +119,15 @@ export const Profile = (props) => {
           </button>
           <input
             type="text"
-            placeholder="picture URL"
-            value={userResult[0]?.pictureURL}
+            placeholder="URL for a new profile picture"
+            style={{ width: "80%" }}
           />
 
-          <input type="text" placeholder="description" />
+          <textarea
+            placeholder="Description (previous description will be used if you dont type anything)"
+            rows="5"
+            style={{ resize: "none", width: "80%" }}
+          ></textarea>
           <button>Update</button>
         </form>
       )}
