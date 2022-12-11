@@ -22,10 +22,7 @@ export const Profile = (props) => {
     let ownBlocks = blocksListReference
       // eslint-disable-next-line array-callback-return
       .filter((obj) => {
-        if (
-          props.profileAuth?.email === obj.userOwner &&
-          props.profileAuth?.email === params.email
-        ) {
+        if (params.email === obj.userOwner) {
           return true;
         }
       })
