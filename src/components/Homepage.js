@@ -75,8 +75,18 @@ export const Homepage = (props) => {
       <div className="sorting-buttons">
         <button
           onClick={() => setToggleGlobalOrFollowing(!toggleGlobalOrFollowing)}
+          style={{ transform: toggleGlobalOrFollowing && "scale(1.2,1.2)" }}
         >
-          {(!toggleGlobalOrFollowing && "Following Only") || "Global Blocks"}
+          Following Only
+        </button>
+
+        <button
+          onClick={() => setToggleGlobalOrFollowing(!toggleGlobalOrFollowing)}
+          style={{
+            transform: !toggleGlobalOrFollowing && "scale(1.2,1.2)",
+          }}
+        >
+          Global Blocks
         </button>
       </div>
       <div className="blocks-section">

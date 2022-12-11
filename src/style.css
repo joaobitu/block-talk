@@ -445,8 +445,12 @@ body {
     background-color: var(--main-color-dark);
     color: white;
     font-weight: 700;
+    transition: all ease-out 0.5s;
 }
-
+.sorting-buttons {
+    display: flex;
+    gap: 20px;
+}
 .block h5 {
     margin-top: 5px;
     margin-bottom: 2px;

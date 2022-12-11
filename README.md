@@ -60,4 +60,4 @@ A social media application in real life is incredibly complex, and it takes tens
 ## Later Patches
 
 - Now comments are displayed without the need to refresh, and you can also delete blocks and comments! A starter page was also added to instruct the user to create an account, and now all modals close upon performaing the intended action for the modal!(11/12/2022)
-- Now the Profile Update function also happens without refreshing! I have also added a fun little tutorial to teach the usability for the application!
+- Now the Profile Update function also happens without refreshing! I have also added a fun little tutorial to teach the usability for the application! Also improved block sorting button display(12/12/2022)
