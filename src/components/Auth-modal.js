@@ -31,12 +31,9 @@ export const AuthModal = (props) => {
             type="password"
             name="password"
             onChange={(e) => props.passwordRegisterValue(e.target.value)}
+            minLength="6"
+            required
           />
-        </label>
-
-        <label htmlFor="confirm-password">
-          Confirm Password:
-          <input type="password" name="confirm-password" />
         </label>
 
         <button>{">"}</button>

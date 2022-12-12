@@ -205,6 +205,7 @@ function App() {
       );
     } catch (error) {
       console.log(error.message);
+      return false;
     }
   };
 
@@ -349,7 +350,10 @@ function App() {
             />
           }
         />
-        <Route path="/follows/:email" element={<Follows userData={users} />} />
+        <Route
+          path="/follows/:email"
+          element={<Follows userData={users} profileAuth={activeUser} />}
+        />
         <Route
           path="/posts/:id"
           element={
@@ -388,11 +392,3 @@ function App() {
 }
 
 export default App;
-
-/*
-Follow/Unfollow functionality,
-
-Follow:
-when someone follows, the other person should get 
-a follower, and the active user should get a following
- */

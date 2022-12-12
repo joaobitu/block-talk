@@ -38,9 +38,9 @@ Overall it was incredibly interesting challenge.
 - ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
 - ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
--     ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 - ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
--     ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+- ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 - ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
 
 ## Improvements
@@ -49,15 +49,15 @@ A social media application in real life is incredibly complex, and it takes tens
 
 - ~~Making the changes to some elements of the application dynamic, in not needing to refresh to reload the content and pull the data from the backend~~
 - ~~Adding the option to delete/edit Blocks (this was left out as I felt like it was something I didnt need further practicing giving I already did this in previous applications)~~
-- Adding further barriers to avoid displaying null content (profile page inacessible before being logged in)
+- ~~Adding further barriers to avoid displaying null content (profile page inacessible before being logged in)~~
 - Adding a Different Color Scheme Option.
 
 ## Links
 
 - [Live version](https://joaobitu.github.io/block-talk/#/)
-- [Project Reference](https://www.theodinproject.com/lessons/node-path-javascript-javascript-final-project)
 
 ## Later Patches
 
-- Now comments are displayed without the need to refresh, and you can also delete blocks and comments! A starter page was also added to instruct the user to create an account, and now all modals close upon performaing the intended action for the modal!(11/12/2022)
-- Now the Profile Update function also happens without refreshing! I have also added a fun little tutorial to teach the usability for the application! Also improved block sorting button display(12/12/2022)
+- Now comments are displayed without the need to refresh, and you can also delete blocks and comments! A starter page was also added to instruct the user to create an account, and now all modals close upon performaing the intended action for the modal!(10/12/2022)
+- Now the Profile Update function also happens without refreshing! I have also added a fun little tutorial to teach the usability for the application! Also improved block sorting button display(11/12/2022)
+- Added further barriers to avoid displaying null content, added password validation feedback on registering!(12/12/2022)

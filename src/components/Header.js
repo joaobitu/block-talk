@@ -15,7 +15,7 @@ export const Header = (props) => {
         }}
       >
         <h4>Find user</h4>
-        <input type="text" />
+        <input type="text" required />
         <button>
           <img src={SearchIcon} alt="magnifying glass" />
         </button>
