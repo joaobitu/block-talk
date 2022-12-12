@@ -287,6 +287,7 @@ function App() {
     getBlocksList();
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
+      console.log(activeUser?.email);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeUser]);
@@ -313,13 +314,28 @@ function App() {
                 margin: "10px",
               }}
             >
-              <h1>Welcome to Block Talk!</h1>
-              <p>
-                Please Create your account by clicking the button on the top
-                right side, and feel free to try out the application! for more
-                details check out the{" "}
-                <a href="https://github.com/joaobitu/block-talk">repository</a>!
-              </p>
+              {(!activeUser?.email && users.length > 0 && (
+                <div>
+                  {" "}
+                  <h1>Welcome to Block Talk!</h1>
+                  <p>
+                    Please Create your account by clicking the button on the top
+                    right side, and feel free to try out the application! for
+                    more details check out the{" "}
+                    <a href="https://github.com/joaobitu/block-talk">
+                      repository
+                    </a>
+                    !
+                  </p>
+                </div>
+              )) || (
+                <Homepage
+                  blocksList={blocks}
+                  profileAuth={activeUser}
+                  validateFollowing={followingStatus}
+                  deleteSelectedBlock={deleteBlock}
+                />
+              )}
             </div>
           }
         />
