@@ -40,17 +40,18 @@ export const Follows = (props) => {
   });
   return (
     <div className="follows">
-      {(props.profileAuth?.email && (
+      {(props.profileAuth?.email && props.userData.length > 0 && (
         <div className="following">
           <h1>Following</h1>
           {followingList}
         </div>
-      )) || (
-        <h1 className="follows-loggedin-error">
-          You must log in to see Follows information
-        </h1>
-      )}
-      {props.profileAuth?.email && (
+      )) ||
+        (props.userData.length > 0 && (
+          <h1 className="follows-loggedin-error">
+            You must log in to see Follows information
+          </h1>
+        ))}
+      {props.profileAuth?.email && props.userData.length > 0 && (
         <div className="followers">
           <h1>Followers</h1>
           {followersList}

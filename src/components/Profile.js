@@ -107,9 +107,12 @@ export const Profile = (props) => {
         </div>
       )) || (
         <div className="invalid-user">
-          {(props.profileAuth?.email && <h1>This user doesnt exist</h1>) || (
-            <h1>You must log in to see profile information!</h1>
-          )}
+          {(props.profileAuth?.email && props.userData.length > 0 && (
+            <h1>This user doesnt exist</h1>
+          )) ||
+            (props.userData.length > 0 && (
+              <h1>You must log in to see profile information!</h1>
+            ))}
         </div>
       )}
 
