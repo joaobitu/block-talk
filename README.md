@@ -54,7 +54,7 @@ A social media application in real life is incredibly complex, and it takes tens
 
 ## Links
 
-- [Live version](https://joaobitu.github.io/block-talk/#/)
+- [Live version](https://https://dapper-meerkat-e86fe4.netlify.app/#/)
 
 ## Later Patches
 
