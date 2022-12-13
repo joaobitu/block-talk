@@ -305,15 +305,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div
-              className="welcome-page"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                padding: "10px",
-                margin: "10px",
-              }}
-            >
+            <div className="void">
               {(!activeUser?.email && users.length > 0 && (
                 <div className="welcome-page">
                   {" "}

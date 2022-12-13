@@ -534,7 +534,12 @@ body {
     resize: none;
 }
 
-
+.welcome-page {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
 
 /*fixer upper for the comment delete button*/
 .comment button {
@@ -604,11 +609,12 @@ body {
     .header h1, .header h4 {
         display: none;
     }
-    .profile , .follows , .homepage, .welcome-page, .extended-block {
+    .profile , .follows , .homepage, .void, .extended-block {
         overflow-y: auto;
         flex: 8;
         
     }
+    
     .header-right {
         flex-direction: column;
         gap: 4px;
