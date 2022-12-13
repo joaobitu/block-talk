@@ -17,7 +17,6 @@
     padding: 0;
     text-decoration: none;
 }
-
 body {
     margin: 0;
 }
@@ -241,8 +240,7 @@ body {
     top: 2%;
     left: calc(50% - 20vw);
     border: 3px solid var(--main-color-light);
-    align-items: center;
-    justify-items: center;
+    
     background-color: white;
 }
 
@@ -345,6 +343,7 @@ body {
     max-height: 150px;
     width: 100%;
     border-radius: 20px;
+    max-width: 300px;
     padding-left: 0;
 }
 
@@ -542,3 +541,127 @@ body {
     align-self: flex-start;
 }
 
+@media only screen and (max-width: 1000px) {
+    body  h3 {
+        font-size: 12px;
+    }
+    body  h2 {
+        font-size: 16px;
+        margin: 0;
+    }
+    .App {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 100vh;
+    }
+    .description {
+        display: none;
+    }
+    .sidebar {
+        flex-direction: row;
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        padding: 0 5px 0 5px;
+        justify-content: space-evenly;
+        align-items: center;
+        flex: 1;
+        bottom: 0;
+        
+    }
+    .sidebar ul {
+        display: flex;
+        
+        margin: 0;
+       
+        gap: 10px;
+        
+    }
+
+    .sidebar ul li {
+        font-size: 0.7rem;
+    }
+    .sidebar button {
+        font-size: 0.8rem;
+        margin-top: 0;
+        padding: 2px;
+        width: 8em;
+        box-shadow: var(--light-shadow);
+    }
+    .header {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       
+       flex: 1;
+       font-size: 0.6rem;
+       padding: 0;
+    }
+    .header form {
+        transform: scale(80%);
+    }
+    
+    .header h1, .header h4 {
+        display: none;
+    }
+    .profile , .follows , .homepage, .welcome-page, .extended-block {
+        overflow-y: auto;
+        flex: 8;
+        
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 4px;
+        margin-left: -50px;
+    }
+    .header-right h3 {
+        margin: 0;
+    }
+    .auth-modal {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: fit-content;
+        margin: auto;
+    
+    inset: 0;
+        
+    }
+
+    .auth-modal div {
+        border: none;
+    }
+    .auth-modal form {
+        padding: 10px;
+    }
+
+    .new-block-modal {
+        display: flex;
+        flex-direction: column;
+        height: 50%;
+        width: 80%;
+        margin: auto;
+        
+        inset: 0;
+    }
+
+    .new-block-modal form input {
+        width: 100%;
+    }
+    .follows {
+        display: flex;
+        flex-direction: column; 
+    }
+    .profile-details {
+        display: flex;
+        flex-direction: column;
+    }
+    .extended-block form textarea {
+        width: 100%;
+    }
+    .profile form {
+        margin: auto;
+        width: 80%;
+        height: fit-content;
+        inset: 0;}
+  }

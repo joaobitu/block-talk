@@ -294,13 +294,13 @@ function App() {
 
   return (
     <div className="App">
+      <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
       <Header
         toggleRegisterLogIn={toggleAuthModal}
         profileAuth={activeUser}
         logoutAction={logout}
         userData={users}
       />
-      <Sidebar toggleNewBlock={toggleBlockModal} profileAuth={activeUser} />
       <Routes>
         <Route
           path="/"
@@ -315,7 +315,7 @@ function App() {
               }}
             >
               {(!activeUser?.email && users.length > 0 && (
-                <div>
+                <div className="welcome-page">
                   {" "}
                   <h1>Welcome to Block Talk!</h1>
                   <p>

@@ -73,6 +73,8 @@ export const Profile = (props) => {
             <h3>
               Following: {userResult[0]?.following}, Followers:{" "}
               {userResult[0]?.followers}{" "}
+            </h3>
+            <div>
               {props.profileAuth?.email !== params.email && (
                 <button
                   onClick={() =>
@@ -102,14 +104,14 @@ export const Profile = (props) => {
                   <button>See Follows</button>
                 </Link>
               )}
-            </h3>
+            </div>
           </div>
         </div>
       )) || (
         <div className="invalid-user">
-          {(props.profileAuth?.email && props.userData.length > 0 && (
-            <h1>This user doesnt exist</h1>
-          )) ||
+          {(props.profileAuth?.email &&
+            props.userData.length > 0 &&
+            userResult && <h1>This user doesnt exist</h1>) ||
             (props.userData.length > 0 && (
               <h1>You must log in to see profile information!</h1>
             ))}
