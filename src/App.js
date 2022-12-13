@@ -328,14 +328,15 @@ function App() {
                     !
                   </p>
                 </div>
-              )) || (
-                <Homepage
-                  blocksList={blocks}
-                  profileAuth={activeUser}
-                  validateFollowing={followingStatus}
-                  deleteSelectedBlock={deleteBlock}
-                />
-              )}
+              )) ||
+                (users.length > 0 && (
+                  <Homepage
+                    blocksList={blocks}
+                    profileAuth={activeUser}
+                    validateFollowing={followingStatus}
+                    deleteSelectedBlock={deleteBlock}
+                  />
+                ))}
             </div>
           }
         />
