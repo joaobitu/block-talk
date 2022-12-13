@@ -3,8 +3,8 @@ import { getFirestore } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDijHtmpN8LcSUke1jwOAgZNlpmhLRtzf4",
-  authDomain: "block-talk-42c0d.firebaseapp.com",
+  apiKey: `${process.env.REACT_APP_API_KEY}`,
+  authDomain: `${process.env.REACT_APP_AUTH_DOMAIN}`,
   projectId: "block-talk-42c0d",
   storageBucket: "block-talk-42c0d.appspot.com",
   messagingSenderId: "487535311993",
