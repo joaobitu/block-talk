@@ -17,7 +17,7 @@ export const NewBlock = (props) => {
       {(props.profileAuth?.email && (
         <form
           onSubmit={(e) => {
-            if (e.target.elements[0].value.length() < 280) {
+            if (e.target.elements[0].value.length < 280) {
               props.addNewBlock(e, props.profileAuth.email);
               props.updateBlocksList();
               props.toggleNewBlock();

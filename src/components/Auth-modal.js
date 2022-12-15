@@ -10,7 +10,7 @@ export const AuthModal = (props) => {
       </div>
       <form
         onSubmit={(e) => {
-          if (e.target.elements[0].value.length() < 100) {
+          if (e.target.elements[0].value.length < 100) {
             props.registerSubmit(e);
             props.toggleRegisterLogIn();
             navigate(`/profile/${e.target.elements[0].value}`);

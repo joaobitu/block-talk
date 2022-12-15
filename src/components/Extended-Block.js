@@ -36,7 +36,7 @@ export const ExtendedBlock = (props) => {
       })}
       <form
         onSubmit={(e) => {
-          if (e.target.elements[0].value.length() < 280) {
+          if (e.target.elements[0].value.length < 280) {
             props.addCommentSubmit(params.id, props.profileAuth?.email, e);
 
             setCommentsList(
