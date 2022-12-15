@@ -51,7 +51,6 @@ export const Profile = (props) => {
       });
     setBlocksResult(ownBlocks);
     setUserResult(resultObject);
-    console.log(userResult);
   }, [params, props.userData]);
 
   return (
@@ -121,15 +120,20 @@ export const Profile = (props) => {
       {props.profileModalValidity && (
         <form
           onSubmit={(e) => {
-            props.profileUpdateSubmit(e, userResult[0]?.id, params.email);
-            props.profileUpdateToggle();
+            if (
+              e.target.elements[0].value.length() < 800 &&
+              e.target.elements[1].value.length() < 280
+            ) {
+              props.profileUpdateSubmit(e, userResult[0]?.id, params.email);
+              props.profileUpdateToggle();
+            }
           }}
         >
           <button type="click" onClick={() => props.profileUpdateToggle()}>
             x
           </button>
           <input
-            type="text"
+            type="url"
             placeholder="URL for a new profile picture"
             style={{ width: "80%" }}
           />
@@ -138,6 +142,7 @@ export const Profile = (props) => {
             placeholder="Description (previous description will be used if you dont type anything)"
             rows="5"
             style={{ resize: "none", width: "80%" }}
+            maxLength="280"
           ></textarea>
           <button>Update</button>
         </form>

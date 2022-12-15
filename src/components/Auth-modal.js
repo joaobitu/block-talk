@@ -10,9 +10,11 @@ export const AuthModal = (props) => {
       </div>
       <form
         onSubmit={(e) => {
-          props.registerSubmit(e);
-          props.toggleRegisterLogIn();
-          navigate(`/profile/${e.target.elements[0].value}`);
+          if (e.target.elements[0].value.length() < 100) {
+            props.registerSubmit(e);
+            props.toggleRegisterLogIn();
+            navigate(`/profile/${e.target.elements[0].value}`);
+          }
         }}
       >
         <h3>Sign Up:</h3>
@@ -21,6 +23,7 @@ export const AuthModal = (props) => {
           <input
             type="email"
             name="email"
+            maxLength="40"
             onChange={(e) => props.emailRegisterValue(e.target.value)}
           />
         </label>
@@ -32,6 +35,7 @@ export const AuthModal = (props) => {
             name="password"
             onChange={(e) => props.passwordRegisterValue(e.target.value)}
             minLength="6"
+            maxLength="20"
             required
           />
         </label>

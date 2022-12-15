@@ -89,7 +89,7 @@ function App() {
     const loggedInUserData = users.filter(
       (element) => element.email === loggedUser
     )[0];
-    console.log(loggedInUserData.followingList.includes(targetUser));
+
     if (loggedInUserData.followingList.includes(targetUser)) return true;
     return false;
   };
@@ -106,7 +106,7 @@ function App() {
     const properIDLoggedIn = users.filter(
       (element) => element.email === loggedUser
     )[0];
-    console.log(properIDLoggedIn);
+
     const properIDTarget = users.filter(
       (element) => element.email === targetUser
     )[0];
@@ -287,7 +287,6 @@ function App() {
     getBlocksList();
     onAuthStateChanged(auth, (currentUser) => {
       setActiveUser(currentUser);
-      console.log(activeUser?.email);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeUser]);
