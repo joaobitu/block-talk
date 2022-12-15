@@ -121,8 +121,8 @@ export const Profile = (props) => {
         <form
           onSubmit={(e) => {
             if (
-              e.target.elements[0].value.length > 800 ||
-              e.target.elements[1].value.length > 280
+              e.target.elements[1].value.length > 800 ||
+              e.target.elements[2].value.length > 280
             ) {
               return;
             } else {
